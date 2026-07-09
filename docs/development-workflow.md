@@ -89,6 +89,233 @@ Black is an automatic Python code formatter.
 black .
 ```
 
+### After Running Black
+
+- Review changed files.
+- Include formatting changes in the commit if they are intentional.
+
+---
+
+## isort
+
+isort automatically sorts Python imports.
+
+### Purpose
+
+- Keep imports organized.
+- Maintain consistent import order.
+- Improve code readability.
+
+### Run
+
+```bash
+isort .
+```
+
+### After Running isort
+
+- Review import changes.
+- Ensure imports remain correct.
+- Include import ordering changes in the commit.
+
+---
+
+## Pylint
+
+Pylint is a Python code quality checker.
+
+### Purpose
+
+- Detect programming errors.
+- Identify code smells.
+- Check coding standards.
+- Improve maintainability.
+
+### Run
+
+```bash
+pylint src/
+```
+
+### Review
+
+- Errors must be fixed.
+- Important warnings should be addressed.
+- Minor warnings can be reviewed and documented if intentional.
+
+---
+
+## Code Quality Rules
+
+Before committing code:
+
+- Run Black for formatting.
+- Run isort for import sorting.
+- Run Pylint for quality checks.
+- Fix important issues.
+- Review all automatic changes.
+- Commit only after code quality checks are complete.
+
+---
+
+# 6. Testing
+
+Run project tests:
+
+```bash
+pytest
+```
+
+Verify:
+
+- All tests pass.
+- No errors remain.
+- New features have appropriate tests.
+
+---
+
+# 7. Final Documentation Review
+
+Before committing:
+
+- Update `README.md` if needed.
+- Update `roadmap.md`.
+- Update `features.md`.
+- Update `database-design.md` if the data model changed.
+- Update `architecture.md` if the project structure changed.
+
+---
+
+# 8. Final Review
+
+Confirm:
+
+- [ ] Code works correctly.
+- [ ] Tests pass.
+- [ ] Documentation is updated.
+- [ ] No temporary files exist.
+- [ ] No sensitive information is included.
+- [ ] Git status shows only intended changes.
+
+---
+
+# 9. Commit
+
+Stage changes:
+
+```bash
+git add .
+```
+
+Create a meaningful commit:
+
+```bash
+git commit -m "docs: complete Phase 1 planning documentation"
+```
+
+Example commit messages:
+
+```text
+docs: update project roadmap
+feat: implement medication management
+fix: resolve validation bug
+refactor: simplify database layer
+test: add medication unit tests
+```
+
+---
+
+# 10. Push to GitHub
+
+Push the changes:
+
+```bash
+git push
+```
+
+Verify the repository on GitHub after the push.
+
+---
+
+# Phase Completion Checklist
+
+Before marking a phase as completed:
+
+- [ ] All phase tasks are finished.
+- [ ] Code has been reviewed.
+- [ ] Documentation is updated.
+- [ ] Tests are passing.
+- [ ] Changes are committed.
+- [ ] Changes are pushed to GitHub.
+- [ ] Roadmap status is updated.
+- [ ] No passwords, API keys, or private data are included.
+
+Only after completing this checklist should the phase status be changed to **Completed**.- `docs/user-flow.md`
+- `docs/database-design.md`
+- `docs/architecture.md`
+
+Documentation must reflect the current project state.
+
+---
+
+# 3. Check Project Structure
+
+Verify:
+
+- Folder structure is correct.
+- No unnecessary files exist.
+- Temporary files are removed.
+- Required files are present.
+
+Example:
+
+```bash
+tree
+```
+
+---
+
+# 4. Git Review Before Commit
+
+Check current changes:
+
+```bash
+git status
+```
+
+Review changes:
+
+```bash
+git diff
+```
+
+Check modified files carefully:
+
+- Confirm only expected files are changed.
+- Check for accidental changes.
+- Check file names and structure.
+- Remove unnecessary files.
+
+---
+
+# 5. Code Quality Check
+
+## Black
+
+Black is an automatic Python code formatter.
+
+### Purpose
+
+- Keep code style consistent.
+- Automatically format Python files.
+- Reduce formatting discussions during development.
+
+### Run
+
+```bash
+black .
+```
+
 ### After running Black
 
 - Review changed files.
