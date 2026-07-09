@@ -1,20 +1,92 @@
 # Features
 
-## User Profile
-- Create profile
-- Set health goals
+## User Management
 
-## Medication
+- Create user profile
+- Edit profile
+- Set health goals
+- Update personal information
+
+## Daily Health Records
+
+- Record weight
+- Record blood pressure
+- Record heart rate
+- Record blood glucose
+- Record water intake
+- Record sleep quality
+- Record energy level
+- Record appetite
+- Add daily notes
+
+## Medication Management
+
 - Add medication
 - Edit medication
-- Track medication usage
+- Delete medication
+- Record medication intake
+- View medication history
 
-## Health Records
-- Weight
-- Blood pressure
-- Blood glucose
-- Sleep quality
+## Activity Tracking
 
-## Activities
-- Track different exercises
-- Record duration and intensityq
+- Add activity
+- Edit activity
+- Delete activity
+- Support multiple activity types
+- Record duration
+- Record intensity
+- Record distance
+- Record calories burned
+- Add activity notes
+
+## Body Measurements
+
+- Record waist circumference
+- Record hip circumference
+- Calculate WHR
+- View measurement history
+
+## Symptoms
+
+- Record symptoms
+- Record side effects
+- Set severity
+- Add notes
+
+## Laboratory Results
+
+- Record laboratory tests
+- View laboratory history
+
+## Progress Photos
+
+- Store progress photos
+- View photo timeline
+
+## Reports
+
+- Daily report
+- Weekly report
+- Monthly report
+- Weight progress
+- Blood pressure trends
+- Blood glucose trends
+- Medication history
+- Activity summary
+
+## Data Management
+
+- Export CSV
+- Export Excel
+- Export PDF
+- Backup data
+- Restore data
+
+## Future Features
+
+- Web application
+- User authentication
+- Dashboard
+- Charts
+- Notifications
+- Reminder system

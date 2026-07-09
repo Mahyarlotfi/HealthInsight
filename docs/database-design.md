@@ -1,14 +1,16 @@
-Database Design
+# Database Design
 
-Overview
+## Overview
 
 This document describes the initial database design for the HealthInsight project. The schema may evolve as new features are added during development.
 
 ---
 
-User
+## User
 
 Stores the user's profile information.
+
+### Fields
 
 - id
 - name
@@ -19,11 +21,23 @@ Stores the user's profile information.
 - target_weight
 - created_at
 
+### Relationships
+
+- One user can have many medications.
+- One user can have many daily records.
+- One user can have many activities.
+- One user can have many body measurements.
+- One user can have many symptoms.
+- One user can have many laboratory results.
+- One user can have many progress photos.
+
 ---
 
-Medication
+## Medication
 
 Stores medications defined by the user.
+
+### Fields
 
 - id
 - user_id
@@ -35,11 +49,18 @@ Stores medications defined by the user.
 - end_date
 - notes
 
+### Relationships
+
+- Belongs to one user.
+- Has many medication logs.
+
 ---
 
-MedicationLog
+## MedicationLog
 
 Stores medication intake records.
+
+### Fields
 
 - id
 - medication_id
@@ -47,11 +68,17 @@ Stores medication intake records.
 - taken
 - notes
 
+### Relationships
+
+- Belongs to one medication.
+
 ---
 
-DailyRecord
+## DailyRecord
 
 Stores daily health records.
+
+### Fields
 
 - id
 - user_id
@@ -67,11 +94,17 @@ Stores daily health records.
 - sleep_quality
 - notes
 
+### Relationships
+
+- Belongs to one user.
+
 ---
 
-Activity
+## Activity
 
 Stores physical activities.
+
+### Fields
 
 - id
 - user_id
@@ -83,11 +116,17 @@ Stores physical activities.
 - calories
 - notes
 
+### Relationships
+
+- Belongs to one user.
+
 ---
 
-Measurement
+## Measurement
 
 Stores periodic body measurements.
+
+### Fields
 
 - id
 - user_id
@@ -97,11 +136,17 @@ Stores periodic body measurements.
 - hip
 - whr
 
+### Relationships
+
+- Belongs to one user.
+
 ---
 
-Symptom
+## Symptom
 
 Stores symptoms and side effects.
+
+### Fields
 
 - id
 - user_id
@@ -110,11 +155,17 @@ Stores symptoms and side effects.
 - severity
 - notes
 
+### Relationships
+
+- Belongs to one user.
+
 ---
 
-LabResult
+## LabResult
 
 Stores laboratory test results.
+
+### Fields
 
 - id
 - user_id
@@ -124,14 +175,24 @@ Stores laboratory test results.
 - unit
 - notes
 
+### Relationships
+
+- Belongs to one user.
+
 ---
 
-Photo
+## Photo
 
 Stores progress photos.
+
+### Fields
 
 - id
 - user_id
 - date
 - file_path
 - notes
+
+### Relationships
+
+- Belongs to one user.
