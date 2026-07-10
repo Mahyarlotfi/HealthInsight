@@ -13,13 +13,14 @@ Stores the user's profile information.
 ### Fields
 
 - id
-- name
-- age
+- full_name
+- date_of_birth
 - gender
 - height
 - initial_weight
 - target_weight
 - created_at
+- updated_at
 
 ### Relationships
 
@@ -48,6 +49,8 @@ Stores medications defined by the user.
 - start_date
 - end_date
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -67,6 +70,8 @@ Stores medication intake records.
 - date
 - taken
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -84,15 +89,18 @@ Stores daily health records.
 - user_id
 - date
 - weight
-- systolic_pressure
-- diastolic_pressure
+- systolic_bp
+- diastolic_bp
 - heart_rate
 - blood_glucose
 - water_intake
+- sleep_hours
+- sleep_quality
 - appetite_score
 - energy_score
-- sleep_quality
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -109,12 +117,14 @@ Stores physical activities.
 - id
 - user_id
 - date
-- type
+- activity_type
 - duration
 - intensity
 - distance
 - calories
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -131,10 +141,11 @@ Stores periodic body measurements.
 - id
 - user_id
 - date
-- weight
 - waist
 - hip
 - whr
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -154,6 +165,8 @@ Stores symptoms and side effects.
 - name
 - severity
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -174,6 +187,8 @@ Stores laboratory test results.
 - value
 - unit
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 
@@ -192,6 +207,8 @@ Stores progress photos.
 - date
 - file_path
 - notes
+- created_at
+- updated_at
 
 ### Relationships
 

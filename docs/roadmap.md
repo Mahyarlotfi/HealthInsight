@@ -10,7 +10,7 @@ Build a flexible and extensible health tracking application that helps users mon
 
 - [x] Phase 0 – Development Environment
 - [x] Phase 1 – Planning
-- [ ] Phase 2 – System Design
+- [x] Phase 2 – System Design
 - [ ] Phase 3 – Data Layer
 - [ ] Phase 4 – Business Logic
 - [ ] Phase 5 – CLI Application (MVP)
@@ -71,16 +71,16 @@ Design the architecture and overall structure of the application.
 
 ### Tasks
 
-- [ ] Create `architecture.md`
-- [ ] Design the Entity Relationship Diagram (ERD)
-- [ ] Review and update database design
-- [ ] Design the project folder structure
-- [ ] Select libraries and technologies
-- [ ] Define project conventions
+- [x] Create `architecture.md`
+- [x] Design the Entity Relationship Diagram (ERD)
+- [x] Review and update database design
+- [x] Design the project folder structure
+- [x] Select libraries and technologies
+- [x] Define project conventions
 
 ### Status
 
-**In Progress**
+**Completed**
 
 ---
 
@@ -100,7 +100,7 @@ Implement the database and data access layer.
 
 ### Status
 
-**Not Started**
+**In Progress**
 
 ---
 
