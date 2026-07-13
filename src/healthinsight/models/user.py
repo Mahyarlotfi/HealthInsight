@@ -4,7 +4,14 @@ from datetime import date
 
 from sqlalchemy.orm import Mapped, mapped_column
 
+from sqlalchemy.orm import relationship
+
 from healthinsight.database.base import BaseModel
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .daily_record import DailyRecord
 
 
 # pylint: disable=too-few-public-methods
@@ -18,6 +25,11 @@ class User(BaseModel):
     height: Mapped[int] = mapped_column(nullable=False)
     initial_weight: Mapped[float] = mapped_column(nullable=False)
     target_weight: Mapped[float | None] = mapped_column()
+
+    daily_records: Mapped[list["DailyRecord"]] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
 
     def __repr__(self):
         return f"User(id={self.id}, full_name={self.full_name!r})"
