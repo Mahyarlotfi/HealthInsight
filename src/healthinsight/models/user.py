@@ -2,9 +2,7 @@
 
 from datetime import date
 
-from sqlalchemy.orm import Mapped, mapped_column
-
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from healthinsight.database.base import BaseModel
 
@@ -12,6 +10,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .daily_record import DailyRecord
+    from .medication import Medication
 
 
 # pylint: disable=too-few-public-methods
@@ -27,6 +26,11 @@ class User(BaseModel):
     target_weight: Mapped[float | None] = mapped_column()
 
     daily_records: Mapped[list["DailyRecord"]] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+
+    medications: Mapped[list["Medication"]] = relationship(
         back_populates="user",
         cascade="all, delete-orphan",
     )

@@ -2,8 +2,9 @@
 
 from datetime import date
 
-from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.user import User
+from healthinsight.models.daily_record import DailyRecord
+from healthinsight.models.medication import Medication
 
 
 def make_user(**kwargs):
@@ -39,3 +40,19 @@ def make_daily_record(**kwargs):
     }
     data.update(kwargs)
     return DailyRecord(**data)
+
+
+def make_medication(**kwargs):
+    """Create a Medication instance with default values."""
+    data = {
+        "user_id": 1,
+        "name": "Metformin",
+        "dosage": 500.0,
+        "unit": "mg",
+        "frequency": "Twice daily",
+        "start_date": date(2024, 1, 1),
+        "end_date": date(2024, 12, 31),
+        "notes": "Take after meals",
+    }
+    data.update(kwargs)
+    return Medication(**data)
