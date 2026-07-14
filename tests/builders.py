@@ -6,6 +6,7 @@ from healthinsight.models.user import User
 from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.medication import Medication
 from healthinsight.models.activity import Activity
+from healthinsight.models.measurement import Measurement
 
 
 def make_user(**kwargs):
@@ -73,3 +74,16 @@ def make_activity(**kwargs):
     }
     data.update(kwargs)
     return Activity(**data)
+
+
+def make_measurement(**kwargs):
+    """Create a Measurement instance with default values."""
+    data = {
+        "user_id": 1,
+        "date": date(2024, 1, 1),
+        "waist": 90.5,
+        "hip": 100.0,
+        "whr": 0.91,
+    }
+    data.update(kwargs)
+    return Measurement(**data)
