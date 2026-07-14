@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .daily_record import DailyRecord
     from .medication import Medication
+    from .activity import Activity
 
 
 # pylint: disable=too-few-public-methods
@@ -31,6 +32,11 @@ class User(BaseModel):
     )
 
     medications: Mapped[list["Medication"]] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+
+    activities: Mapped[list["Activity"]] = relationship(
         back_populates="user",
         cascade="all, delete-orphan",
     )

@@ -7,8 +7,9 @@ from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.user import User
 from healthinsight.models.daily_record import DailyRecord
+from healthinsight.models.activity import Activity
 from tests.helper import column_exists
-from tests.builders import make_user, make_daily_record, make_medication
+from tests.builders import make_user, make_daily_record, make_medication, make_activity
 
 
 def test_create_user(session):
@@ -120,3 +121,32 @@ def test_user_medications_relationship(session):
     session.commit()
 
     assert medication in user.medications
+
+
+def test_user_activities_relationship(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    activity = make_activity(user=user)
+
+    session.add(activity)
+    session.commit()
+
+    assert activity in user.activities
+
+
+def test_delete_user_deletes_activities(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    activity = make_activity(user=user)
+
+    session.add(activity)
+    session.commit()
+
+    session.delete(user)
+    session.commit()
+
+    assert session.get(Activity, activity.id) is None

@@ -5,6 +5,7 @@ from datetime import date
 from healthinsight.models.user import User
 from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.medication import Medication
+from healthinsight.models.activity import Activity
 
 
 def make_user(**kwargs):
@@ -56,3 +57,19 @@ def make_medication(**kwargs):
     }
     data.update(kwargs)
     return Medication(**data)
+
+
+def make_activity(**kwargs):
+    """Create an Activity instance with default values."""
+    data = {
+        "user_id": 1,
+        "date": date(2024, 1, 1),
+        "activity_type": "Walking",
+        "duration": 45,
+        "intensity": "Medium",
+        "distance": 3.5,
+        "calories": 220,
+        "notes": "Morning walk",
+    }
+    data.update(kwargs)
+    return Activity(**data)
