@@ -8,6 +8,7 @@ from healthinsight.models.medication import Medication
 from healthinsight.models.activity import Activity
 from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
+from healthinsight.models.lab_result import LabResult
 
 
 def make_user(**kwargs):
@@ -101,3 +102,17 @@ def make_symptom(**kwargs):
     }
     data.update(kwargs)
     return Symptom(**data)
+
+
+def make_lab_result(**kwargs):
+    """Return a valid LabResult instance."""
+    data = {
+        "user_id": 1,
+        "date": date(2024, 1, 1),
+        "test_name": "Fasting Blood Sugar",
+        "value": 95.0,
+        "unit": "mg/dL",
+        "notes": "Normal",
+    }
+    data.update(kwargs)
+    return LabResult(**data)

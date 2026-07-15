@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from .activity import Activity
     from .measurement import Measurement
     from .symptom import Symptom
+    from .lab_result import LabResult
 
 
 # pylint: disable=too-few-public-methods
@@ -49,6 +50,11 @@ class User(BaseModel):
     )
 
     symptoms: Mapped[list["Symptom"]] = relationship(
+        back_populates="user",
+        cascade="all, delete-orphan",
+    )
+
+    lab_results: Mapped[list["LabResult"]] = relationship(
         back_populates="user",
         cascade="all, delete-orphan",
     )

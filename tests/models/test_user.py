@@ -9,6 +9,7 @@ from healthinsight.models.activity import Activity
 from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
+from healthinsight.models.lab_result import LabResult
 from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
@@ -17,6 +18,7 @@ from tests.builders import (
     make_medication,
     make_user,
     make_symptom,
+    make_lab_result,
 )
 from tests.helper import column_exists
 
@@ -218,3 +220,32 @@ def test_delete_user_deletes_symptoms(session):
     session.commit()
 
     assert session.get(Symptom, symptom.id) is None
+
+
+def test_user_lab_results_relationship(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    lab_result = make_lab_result(user=user)
+
+    session.add(lab_result)
+    session.commit()
+
+    assert lab_result in user.lab_results
+
+
+def test_delete_user_deletes_lab_results(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    lab_result = make_lab_result(user=user)
+
+    session.add(lab_result)
+    session.commit()
+
+    session.delete(user)
+    session.commit()
+
+    assert session.get(LabResult, lab_result.id) is None
