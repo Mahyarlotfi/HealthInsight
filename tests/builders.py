@@ -8,6 +8,7 @@ from healthinsight.models.medication import Medication
 from healthinsight.models.activity import Activity
 from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
+from healthinsight.models.progress_photo import ProgressPhoto
 from healthinsight.models.lab_result import LabResult
 
 
@@ -116,3 +117,15 @@ def make_lab_result(**kwargs):
     }
     data.update(kwargs)
     return LabResult(**data)
+
+
+def make_progress_photo(**kwargs):
+    """Return a valid Photo instance."""
+    data = {
+        "user_id": 1,
+        "date": date(2024, 1, 1),
+        "file_path": "/photos/progress_001.jpg",
+        "notes": "Front view",
+    }
+    data.update(kwargs)
+    return ProgressPhoto(**data)

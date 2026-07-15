@@ -10,6 +10,7 @@ from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
 from healthinsight.models.lab_result import LabResult
+from healthinsight.models.progress_photo import ProgressPhoto
 from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
@@ -19,6 +20,7 @@ from tests.builders import (
     make_user,
     make_symptom,
     make_lab_result,
+    make_progress_photo,
 )
 from tests.helper import column_exists
 
@@ -249,3 +251,32 @@ def test_delete_user_deletes_lab_results(session):
     session.commit()
 
     assert session.get(LabResult, lab_result.id) is None
+
+
+def test_user_progress_photos_relationship(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    photo = make_progress_photo(user=user)
+
+    session.add(photo)
+    session.commit()
+
+    assert photo in user.progress_photos
+
+
+def test_delete_user_deletes_progress_photos(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    photo = make_progress_photo(user=user)
+
+    session.add(photo)
+    session.commit()
+
+    session.delete(user)
+    session.commit()
+
+    assert session.get(ProgressPhoto, photo.id) is None
