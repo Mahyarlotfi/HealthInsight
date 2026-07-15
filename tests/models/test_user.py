@@ -8,6 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from healthinsight.models.activity import Activity
 from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.measurement import Measurement
+from healthinsight.models.symptom import Symptom
 from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
@@ -15,6 +16,7 @@ from tests.builders import (
     make_measurement,
     make_medication,
     make_user,
+    make_symptom,
 )
 from tests.helper import column_exists
 
@@ -186,3 +188,33 @@ def test_delete_user_deletes_measurements(session):
     session.commit()
 
     assert session.get(Measurement, measurement.id) is None
+
+
+def test_user_symptoms_relationship(session):
+    """User contains symptoms."""
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    symptom = make_symptom(user=user)
+
+    session.add(symptom)
+    session.commit()
+
+    assert symptom in user.symptoms
+
+
+def test_delete_user_deletes_symptoms(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    symptom = make_symptom(user=user)
+
+    session.add(symptom)
+    session.commit()
+
+    session.delete(user)
+    session.commit()
+
+    assert session.get(Symptom, symptom.id) is None

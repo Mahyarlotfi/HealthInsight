@@ -7,6 +7,7 @@ from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.medication import Medication
 from healthinsight.models.activity import Activity
 from healthinsight.models.measurement import Measurement
+from healthinsight.models.symptom import Symptom
 
 
 def make_user(**kwargs):
@@ -87,3 +88,16 @@ def make_measurement(**kwargs):
     }
     data.update(kwargs)
     return Measurement(**data)
+
+
+def make_symptom(**kwargs):
+    """Return a valid Symptom instance."""
+    data = {
+        "user_id": 1,
+        "date": date(2024, 1, 1),
+        "name": "Headache",
+        "severity": 3,
+        "notes": "Mild headache after lunch",
+    }
+    data.update(kwargs)
+    return Symptom(**data)
