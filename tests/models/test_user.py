@@ -11,6 +11,7 @@ from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
 from healthinsight.models.lab_result import LabResult
 from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.medication import Medication
 from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
@@ -134,6 +135,22 @@ def test_user_medications_relationship(session):
     session.commit()
 
     assert medication in user.medications
+
+
+def test_delete_user_deletes_medications(session):
+    user = make_user()
+    session.add(user)
+    session.commit()
+
+    medication = make_medication(user=user)
+
+    session.add(medication)
+    session.commit()
+
+    session.delete(user)
+    session.commit()
+
+    assert session.get(Medication, medication.id) is None
 
 
 def test_user_activities_relationship(session):
