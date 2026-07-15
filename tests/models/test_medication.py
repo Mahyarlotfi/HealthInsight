@@ -7,8 +7,9 @@ from sqlalchemy.exc import IntegrityError
 from datetime import date
 
 from healthinsight.models.medication import Medication
+from healthinsight.models.medication_log import MedicationLog
 from tests.helper import column_exists
-from tests.builders import make_user, make_medication
+from tests.builders import make_user, make_medication, make_medication_log
 
 
 def test_create_medication(session):
@@ -143,3 +144,34 @@ def test_duplicate_medication_not_allowed(session):
         session.commit()
 
     session.rollback()
+
+
+def test_medication_logs_relationship(session):
+    medication = make_medication()
+
+    session.add(medication)
+    session.commit()
+
+    medication_log = make_medication_log(medication=medication)
+
+    session.add(medication_log)
+    session.commit()
+
+    assert medication_log in medication.medication_logs
+
+
+def test_delete_medication_deletes_logs(session):
+    medication = make_medication()
+
+    session.add(medication)
+    session.commit()
+
+    medication_log = make_medication_log(medication=medication)
+
+    session.add(medication_log)
+    session.commit()
+
+    session.delete(medication)
+    session.commit()
+
+    assert session.get(MedicationLog, medication_log.id) is None

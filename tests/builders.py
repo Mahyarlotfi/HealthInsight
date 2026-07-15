@@ -10,6 +10,7 @@ from healthinsight.models.measurement import Measurement
 from healthinsight.models.symptom import Symptom
 from healthinsight.models.progress_photo import ProgressPhoto
 from healthinsight.models.lab_result import LabResult
+from healthinsight.models.medication_log import MedicationLog
 
 
 def make_user(**kwargs):
@@ -129,3 +130,15 @@ def make_progress_photo(**kwargs):
     }
     data.update(kwargs)
     return ProgressPhoto(**data)
+
+
+def make_medication_log(**kwargs):
+    """Return a valid MedicationLog instance."""
+    data = {
+        "medication_id": 1,
+        "date": date(2024, 1, 1),
+        "taken": True,
+        "notes": "Taken after breakfast",
+    }
+    data.update(kwargs)
+    return MedicationLog(**data)

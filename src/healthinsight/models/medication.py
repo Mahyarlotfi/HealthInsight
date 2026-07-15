@@ -15,6 +15,7 @@ from healthinsight.database.base import BaseModel
 
 if TYPE_CHECKING:
     from .user import User
+    from .medication_log import MedicationLog
 
 
 # pylint: disable=too-few-public-methods
@@ -62,6 +63,10 @@ class Medication(BaseModel):
     )
     user: Mapped["User"] = relationship(
         back_populates="medications",
+    )
+    medication_logs: Mapped[list["MedicationLog"]] = relationship(
+        back_populates="medication",
+        cascade="all, delete-orphan",
     )
 
     def __repr__(self):
