@@ -6,8 +6,8 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.symptom import Symptom
+from tests.builders import make_symptom, make_user
 from tests.helper import column_exists
-from tests.builders import make_user, make_symptom
 
 
 def test_create_symptom(session):

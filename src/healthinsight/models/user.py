@@ -1,21 +1,20 @@
 """SQLAlchemy User model."""
 
 from datetime import date
+from typing import TYPE_CHECKING
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from healthinsight.database.base import BaseModel
 
-from typing import TYPE_CHECKING
-
 if TYPE_CHECKING:
-    from .daily_record import DailyRecord
-    from .medication import Medication
     from .activity import Activity
-    from .measurement import Measurement
-    from .symptom import Symptom
+    from .daily_record import DailyRecord
     from .lab_result import LabResult
+    from .measurement import Measurement
+    from .medication import Medication
     from .progress_photo import ProgressPhoto
+    from .symptom import Symptom
 
 
 # pylint: disable=too-few-public-methods

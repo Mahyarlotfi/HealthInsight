@@ -2,15 +2,15 @@
 
 from datetime import date
 
-from healthinsight.models.user import User
-from healthinsight.models.daily_record import DailyRecord
-from healthinsight.models.medication import Medication
 from healthinsight.models.activity import Activity
-from healthinsight.models.measurement import Measurement
-from healthinsight.models.symptom import Symptom
-from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.daily_record import DailyRecord
 from healthinsight.models.lab_result import LabResult
+from healthinsight.models.measurement import Measurement
+from healthinsight.models.medication import Medication
 from healthinsight.models.medication_log import MedicationLog
+from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.symptom import Symptom
+from healthinsight.models.user import User
 
 
 def make_user(**kwargs):

@@ -3,12 +3,12 @@
 # pylint: disable=missing-function-docstring
 
 import pytest
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy import inspect
+from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.measurement import Measurement
+from tests.builders import make_measurement, make_user
 from tests.helper import column_exists
-from tests.builders import make_user, make_measurement
 
 
 def test_create_measurement(session):

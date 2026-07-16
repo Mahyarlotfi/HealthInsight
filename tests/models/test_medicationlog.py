@@ -6,8 +6,8 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.medication_log import MedicationLog
-from tests.helper import column_exists
 from tests.builders import make_medication, make_medication_log
+from tests.helper import column_exists
 
 
 def test_create_medication_log(session):

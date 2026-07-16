@@ -7,21 +7,21 @@ from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.activity import Activity
 from healthinsight.models.daily_record import DailyRecord
-from healthinsight.models.measurement import Measurement
-from healthinsight.models.symptom import Symptom
 from healthinsight.models.lab_result import LabResult
-from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.measurement import Measurement
 from healthinsight.models.medication import Medication
+from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.symptom import Symptom
 from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
     make_daily_record,
+    make_lab_result,
     make_measurement,
     make_medication,
-    make_user,
-    make_symptom,
-    make_lab_result,
     make_progress_photo,
+    make_symptom,
+    make_user,
 )
 from tests.helper import column_exists
 

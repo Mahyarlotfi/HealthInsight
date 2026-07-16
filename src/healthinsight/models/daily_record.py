@@ -1,18 +1,12 @@
 """SQLAlchemy DailyRecord model."""
 
-from typing import TYPE_CHECKING
 import datetime
+from typing import TYPE_CHECKING
 
-from sqlalchemy import (
-    CheckConstraint,
-    ForeignKey,
-    Index,
-    UniqueConstraint,
-)
+from sqlalchemy import CheckConstraint, ForeignKey, Index, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from healthinsight.database.base import BaseModel
-
 
 if TYPE_CHECKING:
     from .user import User

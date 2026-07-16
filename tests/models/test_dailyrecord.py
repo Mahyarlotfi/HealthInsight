@@ -6,9 +6,8 @@ import pytest
 from sqlalchemy.exc import IntegrityError
 
 from healthinsight.models.daily_record import DailyRecord
+from tests.builders import make_daily_record, make_user
 from tests.helper import column_exists
-from tests.builders import make_user
-from tests.builders import make_daily_record
 
 
 def test_create_daily_record(session):
