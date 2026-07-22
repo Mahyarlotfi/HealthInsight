@@ -1,0 +1,142 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "healthinsight"
+version = "0.1.0"
+description = "HealthInsight health tracking application"
+readme = "README.md"
+requires-python = ">=3.13"
+authors = [
+    { name = "Mahyar Lotfi", email = "mahyarlotfi@gmail.com" },
+]
+
+dependencies = [
+    "sqlalchemy>=2.0",
+    "alembic>=1.13",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=24.0",
+    "pylint>=3.0",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.6",
+]
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# ----------------------------------------
+# Black
+# ----------------------------------------
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+# ----------------------------------------
+# Ruff
+# ----------------------------------------
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+fix = true
+show-fixes = true
+unsafe-fixes = false
+
+src = [
+    "src",
+    "tests",
+]
+
+exclude = [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "alembic/versions",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "N",   # pep8-naming
+    "S",   # flake8-bandit
+]
+
+ignore = [
+    "S101", # assert in tests
+]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "healthinsight",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# ----------------------------------------
+# Pytest
+# ----------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
+
+pythonpath = [
+    "src",
+]
+
+addopts = [
+    "-ra",
+    "--strict-markers",
+]
+
+# ----------------------------------------
+# Pylint
+# ----------------------------------------
+
+[tool.pylint.main]
+py-version = "3.13"
+
+[tool.pylint.messages_control]
+disable = [
+    "too-few-public-methods",
+]
+
+# ----------------------------------------
+# Coverage
+# ----------------------------------------
+
+[tool.coverage.run]
+branch = true
+
+source = [
+    "healthinsight",
+]
+
+omit = [
+    "tests/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+]
