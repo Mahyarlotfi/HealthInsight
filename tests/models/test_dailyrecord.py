@@ -4,10 +4,10 @@
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.daily_record import DailyRecord
 from tests.builders import make_daily_record, make_user
 from tests.helper import column_exists
+
+from healthinsight.models.daily_record import DailyRecord
 
 
 def test_create_daily_record(session):

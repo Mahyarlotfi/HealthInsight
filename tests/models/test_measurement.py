@@ -5,10 +5,10 @@
 import pytest
 from sqlalchemy import inspect
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.measurement import Measurement
 from tests.builders import make_measurement, make_user
 from tests.helper import column_exists
+
+from healthinsight.models.measurement import Measurement
 
 
 def test_create_measurement(session):

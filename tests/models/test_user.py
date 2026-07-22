@@ -4,15 +4,6 @@
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.activity import Activity
-from healthinsight.models.daily_record import DailyRecord
-from healthinsight.models.lab_result import LabResult
-from healthinsight.models.measurement import Measurement
-from healthinsight.models.medication import Medication
-from healthinsight.models.progress_photo import ProgressPhoto
-from healthinsight.models.symptom import Symptom
-from healthinsight.models.user import User
 from tests.builders import (
     make_activity,
     make_daily_record,
@@ -24,6 +15,15 @@ from tests.builders import (
     make_user,
 )
 from tests.helper import column_exists
+
+from healthinsight.models.activity import Activity
+from healthinsight.models.daily_record import DailyRecord
+from healthinsight.models.lab_result import LabResult
+from healthinsight.models.measurement import Measurement
+from healthinsight.models.medication import Medication
+from healthinsight.models.progress_photo import ProgressPhoto
+from healthinsight.models.symptom import Symptom
+from healthinsight.models.user import User
 
 
 def test_create_user(session):

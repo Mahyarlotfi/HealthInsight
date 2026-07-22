@@ -4,10 +4,10 @@
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.progress_photo import ProgressPhoto
 from tests.builders import make_progress_photo, make_user
 from tests.helper import column_exists
+
+from healthinsight.models.progress_photo import ProgressPhoto
 
 
 def test_create_photo(session):

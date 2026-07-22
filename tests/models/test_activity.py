@@ -4,10 +4,10 @@
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.activity import Activity
 from tests.builders import make_activity, make_user
 from tests.helper import column_exists
+
+from healthinsight.models.activity import Activity
 
 
 def test_create_activity(session):

@@ -1,14 +1,14 @@
 # pylint: disable=too-few-public-methods
 """Shared SQLAlchemy base classes."""
 
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 def utcnow():
     """Return the current UTC time as a timezone-aware datetime."""
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 class Base(DeclarativeBase):

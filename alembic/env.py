@@ -1,24 +1,11 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
 
+import healthinsight.models  # noqa: F401  # Populate Base.metadata
 from healthinsight.config.settings import DATABASE_URL
 from healthinsight.database.base import Base
-
-from healthinsight.models import (
-    activity,
-    daily_record,
-    lab_result,
-    measurement,
-    medication,
-    medication_log,
-    progress_photo,
-    symptom,
-    user,
-)
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

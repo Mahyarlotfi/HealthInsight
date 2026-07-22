@@ -6,11 +6,11 @@ from datetime import date
 
 import pytest
 from sqlalchemy.exc import IntegrityError
+from tests.builders import make_medication, make_medication_log, make_user
+from tests.helper import column_exists
 
 from healthinsight.models.medication import Medication
 from healthinsight.models.medication_log import MedicationLog
-from tests.builders import make_medication, make_medication_log, make_user
-from tests.helper import column_exists
 
 
 def test_create_medication(session):

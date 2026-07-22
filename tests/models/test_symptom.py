@@ -4,10 +4,10 @@
 
 import pytest
 from sqlalchemy.exc import IntegrityError
-
-from healthinsight.models.symptom import Symptom
 from tests.builders import make_symptom, make_user
 from tests.helper import column_exists
+
+from healthinsight.models.symptom import Symptom
 
 
 def test_create_symptom(session):
