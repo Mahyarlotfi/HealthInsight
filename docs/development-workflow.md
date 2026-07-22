@@ -1,8 +1,8 @@
 # Development Workflow
 
-This document defines the standard workflow for developing HealthInsight.
+This document defines the standard development workflow for **HealthInsight**.
 
-The workflow should be followed at the end of each development phase and before creating a Git commit.
+Follow this workflow before creating every Git commit.
 
 ---
 
@@ -10,15 +10,15 @@ The workflow should be followed at the end of each development phase and before 
 
 Before committing:
 
-- Verify all planned tasks for the phase are completed.
-- Review the phase checklist in `roadmap.md`.
-- Confirm the implementation matches the project goals.
+- Verify all planned tasks for the current phase are completed.
+- Review the corresponding checklist in `roadmap.md`.
+- Ensure the implementation matches the project goals.
 
 ---
 
 # 2. Update Documentation
 
-Review and update documentation if needed:
+Review and update documentation when necessary:
 
 - `README.md`
 - `docs/roadmap.md`
@@ -27,18 +27,18 @@ Review and update documentation if needed:
 - `docs/database-design.md`
 - `docs/architecture.md`
 
-Documentation must reflect the current project state.
+Documentation should always reflect the current project state.
 
 ---
 
 # 3. Check Project Structure
 
-Verify:
+Verify that:
 
 - Folder structure is correct.
-- No unnecessary files exist.
-- Temporary files are removed.
-- Required files are present.
+- No temporary files exist.
+- No unnecessary files are included.
+- Required project files are present.
 
 Example:
 
@@ -48,179 +48,126 @@ tree
 
 ---
 
-# 4. Git Review Before Commit
+# 4. Review Git Changes
 
-Check current changes:
+Check repository status:
 
 ```bash
 git status
 ```
 
-Review changes:
+Review modifications:
 
 ```bash
 git diff
 ```
 
-Check modified files carefully:
+Verify that:
 
-- Confirm only expected files are changed.
-- Check for accidental changes.
-- Check file names and structure.
-- Remove unnecessary files.
+- Only intended files are modified.
+- No accidental changes exist.
+- No generated or temporary files are included.
 
 ---
 
-# 5. Code Quality Check
+# 5. Code Quality
 
-## Black
+## Ruff
 
-Black is an automatic Python code formatter.
+Ruff is responsible for:
 
-### Purpose
+- Linting
+- Import sorting
+- Automatic fixes
 
-- Keep code style consistent.
-- Automatically format Python files.
-- Reduce formatting discussions during development.
-
-### Run
+Run:
 
 ```bash
-black .
+ruff check . --fix
 ```
 
-### After Running Black
-
-- Review changed files.
-- Include formatting changes in the commit if they are intentional.
+Review any automatic fixes before committing.
 
 ---
 
-## isort
+## Ruff Formatter
 
-isort automatically sorts Python imports.
-
-### Purpose
-
-- Keep imports organized.
-- Maintain consistent import order.
-- Improve code readability.
-
-### Run
+Format the project:
 
 ```bash
-isort .
+ruff format .
 ```
 
-### After Running isort
-
-- Review import changes.
-- Ensure imports remain correct.
-- Include import ordering changes in the commit.
-
----
-
-## Pylint
-
-Pylint is a Python code quality checker.
-
-### Purpose
-
-- Detect programming errors.
-- Identify code smells.
-- Check coding standards.
-- Improve maintainability.
-
-### Run
-
-```bash
-pylint src/
-```
-
-### Review
-
-- Errors must be fixed.
-- Important warnings should be addressed.
-- Minor warnings can be reviewed and documented if intentional.
-
----
-
-## Code Quality Rules
-
-Before committing code:
-
-- Run Black for formatting.
-- Run isort for import sorting.
-- Run Pylint for quality checks.
-- Fix important issues.
-- Review all automatic changes.
-- Commit only after code quality checks are complete.
+Review formatting changes before committing.
 
 ---
 
 # 6. Testing
 
-Run project tests:
+Run the complete test suite:
 
 ```bash
 pytest
 ```
 
-Verify:
+Verify that:
 
 - All tests pass.
-- No errors remain.
-- New features have appropriate tests.
+- No unexpected failures remain.
+- New functionality includes appropriate tests.
 
 ---
 
 # 7. Final Documentation Review
 
-Before committing:
+Before committing, verify whether any documentation requires updates:
 
-- Update `README.md` if needed.
-- Update `roadmap.md`.
-- Update `features.md`.
-- Update `database-design.md` if the data model changed.
-- Update `architecture.md` if the project structure changed.
+- `README.md`
+- `docs/roadmap.md`
+- `docs/features.md`
+- `docs/database-design.md`
+- `docs/architecture.md`
 
 ---
 
 # 8. Final Review
 
-Confirm:
+Confirm the following:
 
-- [ ] Code works correctly.
-- [ ] Tests pass.
-- [ ] Documentation is updated.
-- [ ] No temporary files exist.
+- [ ] Feature is complete.
+- [ ] Ruff passes without errors.
+- [ ] Project is correctly formatted.
+- [ ] All tests pass.
+- [ ] Documentation is updated if necessary.
+- [ ] No temporary files remain.
 - [ ] No sensitive information is included.
-- [ ] Git status shows only intended changes.
+- [ ] Git status contains only intended changes.
 
 ---
 
 # 9. Commit
 
-Stage changes:
+Stage the required files:
 
 ```bash
-git add .
+git add <files>
 ```
 
-Create a meaningful commit:
+Create a meaningful commit message:
 
 ```bash
-git commit -m "docs: complete Phase 1 planning documentation"
+git commit -m "feat(repository): implement MedicationRepository"
 ```
 
-Example commit messages:
+Examples:
 
 ```text
-docs: update project roadmap
-feat: implement medication management
-fix: resolve validation bug
-refactor: simplify database layer
-test: add medication unit tests
+feat(repository): implement MedicationRepository
+fix(database): resolve relationship loading issue
+refactor(models): simplify validation logic
+test(repository): add MedicationRepository tests
+docs: update development workflow
+build: add pyproject configuration
 ```
 
 ---
@@ -241,215 +188,15 @@ Verify the repository on GitHub after the push.
 
 Before marking a phase as completed:
 
-- [ ] All phase tasks are finished.
+- [ ] All planned tasks are finished.
 - [ ] Code has been reviewed.
+- [ ] Ruff passes successfully.
+- [ ] Project formatting is clean.
+- [ ] All tests pass.
 - [ ] Documentation is updated.
-- [ ] Tests are passing.
 - [ ] Changes are committed.
 - [ ] Changes are pushed to GitHub.
 - [ ] Roadmap status is updated.
 - [ ] No passwords, API keys, or private data are included.
 
-Only after completing this checklist should the phase status be changed to **Completed**.- `docs/user-flow.md`
-- `docs/database-design.md`
-- `docs/architecture.md`
-
-Documentation must reflect the current project state.
-
----
-
-# 3. Check Project Structure
-
-Verify:
-
-- Folder structure is correct.
-- No unnecessary files exist.
-- Temporary files are removed.
-- Required files are present.
-
-Example:
-
-```bash
-tree
-```
-
----
-
-# 4. Git Review Before Commit
-
-Check current changes:
-
-```bash
-git status
-```
-
-Review changes:
-
-```bash
-git diff
-```
-
-Check modified files carefully:
-
-- Confirm only expected files are changed.
-- Check for accidental changes.
-- Check file names and structure.
-- Remove unnecessary files.
-
----
-
-# 5. Code Quality Check
-
-## Black
-
-Black is an automatic Python code formatter.
-
-### Purpose
-
-- Keep code style consistent.
-- Automatically format Python files.
-- Reduce formatting discussions during development.
-
-### Run
-
-```bash
-black .
-```
-
-### After running Black
-
-- Review changed files.
-- Include formatting changes in the commit if they are intentional.
-
----
-
-## isort
-
-isort automatically sorts Python imports.
-
-### Purpose
-
-- Keep imports organized.
-- Maintain consistent import order.
-- Improve code readability.
-
-### Run
-
-```bash
-isort .
----
-
-## Pylint
-
-Pylint is a Python code quality checker.
-
-### Purpose
-
-- Detect programming errors.
-- Identify code smells.
-- Check coding standards.
-- Improve maintainability.
-
-### Run
-
-```bash
-pylint src/
-```
-
-### Review
-
-- Errors must be fixed.
-- Important warnings should be addressed.
-- Minor warnings can be reviewed and documented if intentional.
-
----
-
-## Code Quality Rules
-
-Before committing code:
-
-- Run Black for formatting.
-- Run Pylint for quality checks.
-- Fix important issues.
-- Review all automatic changes.
-- Commit only after code quality checks are complete.
-
-# 6. Testing
-
-Run project tests:
-
-```bash
-pytest
-```
-
-Verify:
-
-- All tests pass.
-- No errors remain.
-- New features have appropriate tests.
-
----
-
-# 7. Final Review
-
-Confirm:
-
-- [ ] Code works correctly.
-- [ ] Tests pass.
-- [ ] Documentation is updated.
-- [ ] No temporary files exist.
-- [ ] No sensitive information is included.
-- [ ] Git status shows only intended changes.
-
----
-
-# 8. Commit
-
-Create a meaningful commit message:
-
-```bash
-git add <files>
-
-git commit -m "Complete phase 1 planning documentation"
-```
-
-Examples:
-
-```text
-Add database design documentation
-
-Update project roadmap
-
-Implement medication model
-
-Fix validation errors
-```
-
----
-
-# 9. Push to GitHub
-
-After successful commit:
-
-```bash
-git push
-```
-
-Verify the repository on GitHub.
-
----
-
-# Phase Completion Checklist
-
-Before marking a phase as completed:
-
-- [ ] All phase tasks are finished.
-- [ ] Code has been reviewed.
-- [ ] Documentation is updated.
-- [ ] Tests are passing.
-- [ ] Changes are committed.
-- [ ] Changes are pushed to GitHub.
-- [ ] Roadmap status is updated.
-- [ ] No passwords, API keys, or private data are included.
-
-Only after completing this checklist, the phase status can be changed to **Completed**.
+Only after completing this checklist should the phase status be changed to **Completed**.

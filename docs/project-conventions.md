@@ -16,6 +16,7 @@ Following these conventions helps maintain a clean, consistent, and maintainable
 - Avoid duplicated code.
 - Keep functions small and focused.
 - Each module should have a single responsibility.
+- Follow the existing project style instead of introducing new patterns.
 
 ---
 
@@ -27,9 +28,9 @@ Use **snake_case**.
 
 Examples:
 
-- `user_service.py`
-- `database.py`
+- `user.py`
 - `daily_record.py`
+- `medication_repository.py`
 
 ---
 
@@ -41,7 +42,8 @@ Examples:
 
 - `models`
 - `repositories`
-- `services`
+- `database`
+- `config`
 
 ---
 
@@ -54,6 +56,7 @@ Examples:
 - `User`
 - `Medication`
 - `DailyRecord`
+- `MedicationRepository`
 
 ---
 
@@ -64,8 +67,8 @@ Use **snake_case**.
 Examples:
 
 - `create_user()`
-- `add_medication()`
-- `calculate_whr()`
+- `find_by_user()`
+- `calculate_bmi()`
 
 ---
 
@@ -75,9 +78,9 @@ Use **snake_case**.
 
 Examples:
 
-- `blood_pressure`
 - `daily_record`
 - `target_weight`
+- `blood_pressure`
 
 ---
 
@@ -87,26 +90,30 @@ Use **UPPER_CASE**.
 
 Examples:
 
-- `DEFAULT_DATABASE`
-- `MAX_NAME_LENGTH`
+- `DATABASE_URL`
+- `DEFAULT_PAGE_SIZE`
 
 ---
 
 # Project Structure
 
-The project follows a Layered Architecture.
+The project follows a layered architecture.
 
 ```text
-Presentation
-    ↓
-Services
-    ↓
-Repositories
-    ↓
+Configuration
+      │
 Database
+      │
+Models
+      │
+Repositories
+      │
+Future Service Layer
+      │
+Future API / UI Layer
 ```
 
-Each layer communicates only with the next layer.
+Each layer should depend only on the layer directly below it.
 
 ---
 
@@ -121,61 +128,46 @@ Import order:
 Example:
 
 ```python
-from pathlib import Path
+from datetime import date
 
-from sqlalchemy import create_engine
+from sqlalchemy import select
 
-from healthinsight.database.session import SessionLocal
+from healthinsight.models.user import User
 ```
 
-Imports should be automatically sorted using **isort**.
+Imports are automatically organized by **Ruff**.
 
 ---
 
 # Formatting
 
-Code formatting is handled by **Black**.
+Formatting is handled by **Ruff Formatter**.
 
-Rules:
-
-- Do not manually format code unnecessarily.
-- Run Black before committing.
-
-Command:
+Run:
 
 ```bash
-black .
+ruff format .
 ```
+
+Do not manually reformat code unless necessary.
 
 ---
 
-# Import Sorting
+# Linting
 
-Import sorting is handled by **isort**.
+Linting is handled by **Ruff**.
 
-Command:
-
-```bash
-isort .
-```
-
----
-
-# Code Quality
-
-Static analysis is performed using **Pylint**.
-
-Command:
+Run:
 
 ```bash
-pylint src
+ruff check . --fix
 ```
 
 Requirements:
 
-- Fix all errors.
-- Address important warnings.
-- Review remaining warnings before committing.
+- Fix all reported issues.
+- Review automatic fixes before committing.
+- Do not ignore warnings without a good reason.
 
 ---
 
@@ -194,9 +186,7 @@ def calculate_bmi(weight: float, height: float) -> float:
 
 # Docstrings
 
-Public classes and public functions should include docstrings.
-
-Module docstrings are optional.
+Public modules, classes, and functions should include docstrings.
 
 Example:
 
@@ -211,57 +201,110 @@ def create_user(name: str) -> None:
 
 Write comments only when they improve understanding.
 
-Avoid explaining obvious code.
+Avoid comments that explain obvious code.
 
-Prefer self-explanatory code over excessive comments.
+Prefer descriptive names over explanatory comments.
 
 ---
 
 # Testing
 
-Tests should be written using **pytest**.
+Testing is performed using **pytest**.
 
 Rules:
 
-- Add tests for new features.
-- Keep tests independent.
-- Use descriptive test names.
+- Every new feature should include tests.
+- Tests must be independent.
+- Test names should clearly describe the expected behavior.
+- Existing tests must continue to pass.
+
+Run:
+
+```bash
+pytest
+```
 
 ---
 
-# Git
+# Git Workflow
 
 Before every commit:
 
-- Review changes.
-- Run isort.
-- Run Black.
-- Run Pylint.
-- Run pytest.
-- Review documentation.
+- Review all changes.
+- Run:
 
-Commit messages should be short and meaningful.
+```bash
+ruff check . --fix
+ruff format .
+pytest
+```
+
+- Verify `git status`.
+- Review `git diff`.
+- Ensure only intended files are included.
+- Update documentation if necessary.
+
+Commit messages should follow the Conventional Commits specification.
 
 Examples:
 
-- Add medication repository
-- Implement user model
-- Update database design
-- Fix validation logic
+```text
+feat(repository): implement MedicationRepository
+feat(models): implement DailyRecord model
+fix(database): resolve relationship loading issue
+refactor(repository): simplify query methods
+test(repository): add MedicationRepository tests
+docs: update project conventions
+build: add pyproject configuration
+```
 
 ---
 
 # Documentation
 
-Whenever the project changes, update documentation if necessary.
+Keep documentation synchronized with the codebase.
 
-Update the following documents when applicable:
+Review and update when necessary:
 
-- README.md
-- roadmap.md
-- features.md
-- architecture.md
-- database-design.md
+- `README.md`
+- `docs/roadmap.md`
+- `docs/features.md`
+- `docs/database-design.md`
+- `docs/architecture.md`
+- `docs/user-flow.md`
+
+---
+
+# Dependency Management
+
+Project dependencies are managed using **uv**.
+
+Install project dependencies:
+
+```bash
+uv sync
+```
+
+Install development dependencies:
+
+```bash
+uv sync --extra dev
+```
+
+---
+
+# Project Quality Checklist
+
+Before pushing any changes:
+
+- [ ] Feature is complete.
+- [ ] Ruff passes successfully.
+- [ ] Code is formatted.
+- [ ] Tests pass.
+- [ ] Documentation is updated if required.
+- [ ] No temporary or generated files are included.
+- [ ] No secrets or sensitive information are committed.
+- [ ] `git status` is clean except for intended changes.
 
 ---
 

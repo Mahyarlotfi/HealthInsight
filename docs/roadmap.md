@@ -92,10 +92,10 @@ Implement the database and data access layer.
 
 ### Tasks
 
-- [ ] Create SQLAlchemy models
-- [ ] Configure SQLite
+- [x] Create SQLAlchemy models
+- [x] Configure SQLite
 - [ ] Implement the repository layer
-- [ ] Configure database migrations
+- [x] Configure database migrations
 - [ ] Write database tests
 
 ### Status
