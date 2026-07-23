@@ -178,8 +178,7 @@ Use type hints whenever practical.
 Example:
 
 ```python
-def calculate_bmi(weight: float, height: float) -> float:
-    ...
+def calculate_bmi(weight: float, height: float) -> float: ...
 ```
 
 ---
